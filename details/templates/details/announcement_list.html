@@ -1,0 +1,18 @@
+{% extends 'details/base.html' %}
+
+{% block title %}Announcements{% endblock %}
+
+{% block content %}
+<h2>Announcements</h2>
+<ul class="list-group">
+  {% for announcement in announcements %}
+  <li class="list-group-item">
+    <h5>{{ announcement.title }}</h5>
+    <small>{{ announcement.date_posted }}</small><br>
+    <a href="{% url 'announcement_detail' announcement.pk %}" class="btn btn-sm btn-primary mt-2">View Details</a>
+  </li>
+  {% empty %}
+  <li class="list-group-item">No announcements found.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

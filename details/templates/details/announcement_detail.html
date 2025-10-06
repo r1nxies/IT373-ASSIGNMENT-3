@@ -1,0 +1,31 @@
+{% extends 'details/base.html' %}
+
+{% block title %}{{ announcement.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ announcement.title }}</h2>
+<p><small>{{ announcement.date_posted }}</small></p>
+
+<p id="short-content">{{ announcement.content|truncatechars:200 }}</p>
+<p id="full-content" style="display:none;">{{ announcement.content }}</p>
+
+<button id="toggle-btn" class="btn btn-secondary btn-sm mt-2">Read more</button>
+
+<script>
+document.getElementById('toggle-btn').addEventListener('click', function() {
+    const shortText = document.getElementById('short-content');
+    const fullText = document.getElementById('full-content');
+    if (shortText.style.display === 'none') {
+        shortText.style.display = 'block';
+        fullText.style.display = 'none';
+        this.textContent = 'Read more';
+    } else {
+        shortText.style.display = 'none';
+        fullText.style.display = 'block';
+        this.textContent = 'Show less';
+    }
+});
+</script>
+
+<a href="/announcements/" class="btn btn-outline-primary mt-3">Back to list</a>
+{% endblock %}
